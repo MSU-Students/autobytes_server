@@ -7,13 +7,15 @@ import { UserController } from './user/user.controller';
 import { UserService } from './user/user.service';
 import { AttendanceService } from './attendance/attendance.service';
 import { AttendanceController } from './attendance/attendance.controller';
+import { ClearanceController } from './clearance/clearance.controller';
+import { ClearanceService } from './clearance/clearance.service';
 
 @Module({
   imports: [
     MongooseModule.forFeature([{name: User.name, schema: UserSchema }]),
     MongooseModule.forRoot('mongodb://localhost/autobytes')
   ],
-  controllers: [AppController, UserController, AttendanceController],
-  providers: [AppService, UserService, AttendanceService],
+  controllers: [AppController, UserController, AttendanceController, ClearanceController],
+  providers: [AppService, UserService, AttendanceService, ClearanceService]
 })
 export class AppModule {}

@@ -6,6 +6,12 @@ import { User, UserSchema } from './schemas/user.schema';
 import { UserController } from './user/user.controller';
 import { UserService } from './user/user.service';
 import { BulletinModule } from './bulletin/bulletin.module';
+import { RecordsService } from './records/records.service';
+import { RecordsController } from './records/records.controller';
+import { AttendanceService } from './attendance/attendance.service';
+import { AttendanceController } from './attendance/attendance.controller';
+import { ClearanceController } from './clearance/clearance.controller';
+import { ClearanceService } from './clearance/clearance.service';
 
 @Module({
   imports: [
@@ -13,7 +19,7 @@ import { BulletinModule } from './bulletin/bulletin.module';
     MongooseModule.forRoot('mongodb://localhost/autobytes'),
     BulletinModule
   ],
-  controllers: [AppController, UserController],
-  providers: [AppService, UserService],
+  controllers: [AppController, UserController, AttendanceController, ClearanceController,RecordsController],
+  providers: [AppService, UserService, AttendanceService, ClearanceService,RecordsService]
 })
 export class AppModule {}

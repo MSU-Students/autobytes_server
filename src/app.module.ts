@@ -5,21 +5,39 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { User, UserSchema } from './schemas/user.schema';
 import { UserController } from './user/user.controller';
 import { UserService } from './user/user.service';
-import { BulletinModule } from './bulletin/bulletin.module';
 import { RecordsService } from './records/records.service';
 import { RecordsController } from './records/records.controller';
 import { AttendanceService } from './attendance/attendance.service';
 import { AttendanceController } from './attendance/attendance.controller';
 import { ClearanceController } from './clearance/clearance.controller';
 import { ClearanceService } from './clearance/clearance.service';
+import { BulletinController } from './bulletin/bulletin.controller';
+import { BulletinService } from './bulletin/bulletin.service';
+import { Attendance, AttendanceSchema } from './schemas/attendance.schema';
+import { Bulletin, BulletinSchema } from './schemas/bulletin.schema';
+import { Clearance, ClearanceSchema } from './schemas/clearance.schema';
+import { Records, RecordsSchema } from './schemas/records.schema';
 
 @Module({
   imports: [
-    MongooseModule.forFeature([{name: User.name, schema: UserSchema }]),
+    MongooseModule.forFeature([{
+      name: Attendance.name, schema: AttendanceSchema
+    },
+    {
+      name: User.name, schema: UserSchema
+    },
+    {
+      name: Bulletin.name, schema: BulletinSchema
+    },
+    {
+      name: Clearance.name, schema: ClearanceSchema
+    },
+    {
+      name: Records.name, schema: RecordsSchema
+    }]),
     MongooseModule.forRoot('mongodb://localhost/autobytes'),
-    BulletinModule
   ],
-  controllers: [AppController, UserController, AttendanceController, ClearanceController,RecordsController],
-  providers: [AppService, UserService, AttendanceService, ClearanceService,RecordsService]
+  controllers: [AppController, UserController, AttendanceController, BulletinController, ClearanceController, RecordsController],
+  providers: [AppService, UserService, AttendanceService, BulletinService, ClearanceService, RecordsService]
 })
-export class AppModule {}
+export class AppModule { }

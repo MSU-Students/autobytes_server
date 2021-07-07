@@ -11,7 +11,7 @@ async function bootstrap() {
     .addTag('Autobytes')
     .build();
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document);
+  SwaggerModule.setup('Autobytes', app, document);
   
   await app.listen(3000);
 }

@@ -1,13 +1,30 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { ApiProperty } from '@nestjs/swagger';
 import { Document } from 'mongoose';
+import { IBulletin } from 'src/interfaces/bulletin.interface';
 
 export type BulletinDocument = Bulletin & Document;
 
 @Schema()
-export class Bulletin {
+export class Bulletin implements IBulletin {
+    @ApiProperty()
     @Prop({required:true})
-    firstName: string;
+    title: string;
+
+    @ApiProperty()
     @Prop()
-    lastName: string;
+    date: string;
+    
+    @ApiProperty()
+    @Prop()
+    bulletinFrom: string;
+    
+    @ApiProperty()
+    @Prop()
+    bulletinSemester: string;
+    
+    @ApiProperty()
+    @Prop()
+    bulletinType: string;
 }
 export const BulletinSchema = SchemaFactory.createForClass(Bulletin);

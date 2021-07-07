@@ -5,6 +5,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { User, UserSchema } from './schemas/user.schema';
 import { UserController } from './user/user.controller';
 import { UserService } from './user/user.service';
+import { BulletinModule } from './bulletin/bulletin.module';
 import { RecordsService } from './records/records.service';
 import { RecordsController } from './records/records.controller';
 import { AttendanceService } from './attendance/attendance.service';
@@ -15,7 +16,8 @@ import { ClearanceService } from './clearance/clearance.service';
 @Module({
   imports: [
     MongooseModule.forFeature([{name: User.name, schema: UserSchema }]),
-    MongooseModule.forRoot('mongodb://localhost/autobytes')
+    MongooseModule.forRoot('mongodb://localhost/autobytes'),
+    BulletinModule
   ],
   controllers: [AppController, UserController, AttendanceController, ClearanceController,RecordsController],
   providers: [AppService, UserService, AttendanceService, ClearanceService,RecordsService]

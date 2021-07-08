@@ -13,4 +13,16 @@ export class ClearanceService {
     async findAll(): Promise<Clearance[]> {
         return this.clearanceModel.find().exec();
     }
+    async findById(id: string): Promise<Clearance> {
+        return this.clearanceModel.findById(id).exec();
+    }
+
+    async update(id: string, Clearance: Clearance): Promise<any> {
+        return await this.clearanceModel.findByIdAndUpdate(id, Clearance, {
+            new: true,
+        });
+    }
+    async delete(id: string): Promise<any> {
+        return await this.clearanceModel.findByIdAndRemove(id);
+    }
 }

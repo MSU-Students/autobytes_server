@@ -35,7 +35,9 @@ import { Records, RecordsSchema } from './schemas/records.schema';
     {
       name: Records.name, schema: RecordsSchema
     }]),
-    MongooseModule.forRoot('mongodb://localhost/autobytes'),
+    MongooseModule.forRoot('mongodb://localhost/autobytes', {
+      useFindAndModify:false
+    }),
   ],
   controllers: [AppController, UserController, AttendanceController, BulletinController, ClearanceController, RecordsController],
   providers: [AppService, UserService, AttendanceService, BulletinService, ClearanceService, RecordsService]

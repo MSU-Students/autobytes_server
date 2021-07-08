@@ -17,6 +17,9 @@ import { Attendance, AttendanceSchema } from './schemas/attendance.schema';
 import { Bulletin, BulletinSchema } from './schemas/bulletin.schema';
 import { Clearance, ClearanceSchema } from './schemas/clearance.schema';
 import { Records, RecordsSchema } from './schemas/records.schema';
+import { ArchivedService } from './archived/archived.service';
+import { ArchivedController } from './archived/archived.controller';
+import { Archived, ArchivedSchema } from './schemas/archived.schema';
 
 @Module({
   imports: [
@@ -34,12 +37,15 @@ import { Records, RecordsSchema } from './schemas/records.schema';
     },
     {
       name: Records.name, schema: RecordsSchema
+    },
+    {
+      name: Archived.name, schema: ArchivedSchema
     }]),
     MongooseModule.forRoot('mongodb://localhost/autobytes', {
       useFindAndModify:false
     }),
   ],
-  controllers: [AppController, UserController, AttendanceController, BulletinController, ClearanceController, RecordsController],
-  providers: [AppService, UserService, AttendanceService, BulletinService, ClearanceService, RecordsService]
+  controllers: [AppController, UserController, AttendanceController, BulletinController, ClearanceController, RecordsController, ArchivedController],
+  providers: [AppService, UserService, AttendanceService, BulletinService, ClearanceService, RecordsService, ArchivedService]
 })
 export class AppModule { }

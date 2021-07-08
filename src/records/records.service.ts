@@ -7,10 +7,22 @@ import { Records, RecordsDocument } from 'src/schemas/records.schema';
 export class RecordsService {
     constructor(@InjectModel(Records.name) private recordsModel: Model<RecordsDocument>) { }
     create(records: Records) {
-        const createdUser = new this.recordsModel(records);
-        return createdUser.save();
+        const createdRecords = new this.recordsModel(records);
+        return createdRecords.save();
     }
     async findAll(): Promise<Records[]> {
         return this.recordsModel.find().exec();
+    }
+    async findById(id: string): Promise<Records> {
+        return this.recordsModel.findById(id).exec();
+    }
+
+    async update(id: string, Records: Records): Promise<any> {
+        return await this.recordsModel.findByIdAndUpdate(id, Records, {
+            new: true,
+        });
+    }
+    async delete(id: string): Promise<any> {
+        return await this.recordsModel.findByIdAndRemove(id);
     }
 }

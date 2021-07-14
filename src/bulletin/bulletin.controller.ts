@@ -14,7 +14,7 @@ export class BulletinController {
         return this.bulletinService.create(bulletin);
     }
 
-    @ApiOperation({ summary: 'Get all Bulletin', operationId: 'GetBulletin' })
+    @ApiOperation({ summary: 'Get all Bulletin', operationId: 'GetBulletins' })
     @ApiResponse({ status: 200, type: Bulletin })
     @Get('/all')
     async findAll() {

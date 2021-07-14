@@ -15,7 +15,7 @@ export class ClearanceController {
         return this.clearanceService.create(clearance);
     }
 
-    @ApiOperation({ summary: 'Get all clearance', operationId: 'GetClearance' })
+    @ApiOperation({ summary: 'Get all clearance', operationId: 'GetClearances' })
     @ApiResponse({ status: 200, type: Clearance })
     @Get('/all')
     async findAll() {

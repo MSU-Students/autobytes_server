@@ -1,4 +1,4 @@
-export interface IBulletin {
+export interface IRecords {
     title: string;
     date: string;
     recordsFrom: string;

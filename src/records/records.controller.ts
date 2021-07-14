@@ -22,7 +22,7 @@ export class RecordsController {
         return this.recordsService.findAll();
     }
 
-    @ApiOperation({ summary: 'Get records by id', operationId: 'GetRecords' })
+    @ApiOperation({ summary: 'Get records by id', operationId: 'GetRecord' })
     @ApiResponse({ status: 200, type: Records })
     @Get('id')
     async findById(@Query('id') id: string) {

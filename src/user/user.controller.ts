@@ -6,18 +6,18 @@ import { UserService } from './user.service';
 
 @Controller('user')
 export class UserController {
-  constructor(private userService: UserService) {}
- 
-  @ApiBody({ type: User })
-  @ApiOperation({ summary: 'Add new user', operationId: 'AddUser' })
-  @ApiResponse({ status: 200, type: User })
+  constructor(private userService: UserService) { }
+
+  @ApiBody({ type: [User] })
+  @ApiOperation({ summary: 'Add new users', operationId: 'AddUsers' })
+  @ApiResponse({ status: 200, type: [User] })
   @Post('/create')
-  create(@Body() user: User) {
+  create(@Body() user: User[]) {
     return this.userService.create(user);
   }
 
   @ApiOperation({ summary: 'Get all users', operationId: 'GetUsers' })
-  @ApiResponse({ status: 200, type: User })
+  @ApiResponse({ status: 200, type: [User] })
   @Get('/all')
   async findAll() {
     return this.userService.findAll();

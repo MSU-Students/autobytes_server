@@ -5,10 +5,9 @@ import { User, UserDocument } from 'src/schemas/user.schema';
 
 @Injectable()
 export class UserService {
-  constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
-  create(user: User) {
-    const createdUser = new this.userModel(user);
-    return createdUser.save();
+  constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) { }
+  create(user: User[]): Promise<User[]> {
+    return this.userModel.create(user);
   }
   async findAll(): Promise<User[]> {
     return this.userModel.find().exec();

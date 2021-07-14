@@ -9,23 +9,31 @@ export type UserDocument = User & Document;
 export class User implements IUser {
 
     @ApiProperty()
-    @Prop({required:true})
-    firstName: string;
+    @Prop({ required: true })
+    studentName: string;
 
     @ApiProperty()
-    @Prop({required:true})
-    lastName: string;
+    @Prop({ required: true })
+    id: string;
 
     @ApiProperty()
-    @Prop({required:true})
-    email: string;
+    @Prop({ required: true })
+    gender: string;
 
     @ApiProperty()
-    @Prop({required:true})
+    @Prop({ required: true })
+    address: string;
+
+    @ApiProperty()
+    @Prop({ required: true })
+    level: string;
+
+    @ApiProperty()
+    @Prop({ required: true })
+    acadAdviser: string;
+
+    @ApiProperty()
+    @Prop({ required: true })
     course: string;
-
-    @ApiProperty()
-    @Prop({required:true})
-    idNumber: string;
 }
 export const UserSchema = SchemaFactory.createForClass(User);

@@ -6,10 +6,10 @@ import { Attendance, AttendanceDocument } from 'src/schemas/attendance.schema';
 @Injectable()
 export class AttendanceService {
     constructor(@InjectModel(Attendance.name) private attendanceModel: Model<AttendanceDocument>) { }
-    create(attendance: Attendance) {
-        const createdAttendance = new this.attendanceModel(attendance);
-        return createdAttendance.save();
+    create(attendance: Attendance[]): Promise<Attendance[]> {
+        return this.attendanceModel.create(attendance);
     }
+
     async findAll(): Promise<Attendance[]> {
         return this.attendanceModel.find().exec();
     }

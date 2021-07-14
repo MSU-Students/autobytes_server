@@ -5,7 +5,7 @@ import { Archived, ArchivedDocument } from 'src/schemas/archived.schema';
 
 @Injectable()
 export class ArchivedService {
-  constructor(@InjectModel(Archived.name) private archivedModel: Model<ArchivedDocument>) {}
+  constructor(@InjectModel(Archived.name) private archivedModel: Model<ArchivedDocument>) { }
   create(archived: Archived) {
     const createdArchived = new this.archivedModel(archived);
     return createdArchived.save();

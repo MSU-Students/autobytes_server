@@ -15,14 +15,14 @@ export class ArchivedController {
         return this.archivedService.create(archived);
     }
 
-    @ApiOperation({ summary: 'Get all Archived', operationId: 'GetArchived' })
+    @ApiOperation({ summary: 'Get all Archived', operationId: 'GetArchives' })
     @ApiResponse({ status: 200, type: Archived })
     @Get('/all')
     async findAll() {
         return this.archivedService.findAll();
     }
 
-    @ApiOperation({ summary: 'Get Archived by id', operationId: 'GetArchived' })
+    @ApiOperation({ summary: 'Get Archived by id', operationId: 'GetArchive' })
     @ApiResponse({ status: 200, type: Archived })
     @Get('id')
     async findById(@Query('id') id: string) {

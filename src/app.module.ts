@@ -20,6 +20,12 @@ import { Records, RecordsSchema } from './schemas/records.schema';
 import { ArchivedService } from './archived/archived.service';
 import { ArchivedController } from './archived/archived.controller';
 import { Archived, ArchivedSchema } from './schemas/archived.schema';
+import { Media, MediaSchema } from './schemas/Media.schema';
+import { MediaController } from './media/media.controller';
+import { MediaService } from './media/media.service';
+import { Students, StudentsSchema } from './schemas/students.schema';
+import { StudentsController } from './students/students.controller';
+import { StudentsService } from './students/students.service';
 
 @Module({
   imports: [
@@ -40,12 +46,18 @@ import { Archived, ArchivedSchema } from './schemas/archived.schema';
     },
     {
       name: Archived.name, schema: ArchivedSchema
+    },
+    {
+      name: Media.name, schema: MediaSchema
+    },
+    {
+      name: Students.name, schema: StudentsSchema
     }]),
     MongooseModule.forRoot('mongodb://localhost/autobytes', {
-      useFindAndModify:false
+      useFindAndModify: false
     }),
   ],
-  controllers: [AppController, UserController, AttendanceController, BulletinController, ClearanceController, RecordsController, ArchivedController],
-  providers: [AppService, UserService, AttendanceService, BulletinService, ClearanceService, RecordsService, ArchivedService]
+  controllers: [AppController, UserController, AttendanceController, BulletinController, ClearanceController, RecordsController, ArchivedController, MediaController, StudentsController],
+  providers: [AppService, UserService, AttendanceService, BulletinService, ClearanceService, RecordsService, ArchivedService, MediaService, StudentsService]
 })
 export class AppModule { }

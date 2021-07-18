@@ -8,15 +8,11 @@ export type ClearanceDocument = Clearance & Document;
 export class Clearance {
     @ApiProperty()
     @Prop({required:true})
-    file: string;
+    name: string;
 
     @ApiProperty()
     @Prop({required:true})
     date: string;
-
-    @ApiProperty()
-    @Prop({required:true})
-    semester: string;
 
     @ApiProperty()
     @Prop({required:true})
@@ -25,9 +21,5 @@ export class Clearance {
     @ApiProperty()
     @Prop({required:true})
     amount: string;
-
-    @ApiProperty()
-    @Prop({required:true})
-    addedBy: string;
 }
 export const ClearanceSchema = SchemaFactory.createForClass(Clearance);

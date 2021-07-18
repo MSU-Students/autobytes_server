@@ -26,5 +26,9 @@ export class Bulletin implements IBulletin {
     @ApiProperty()
     @Prop()
     bulletinType: string;
+
+    @ApiProperty()
+    @Prop()
+    url: string;
 }
 export const BulletinSchema = SchemaFactory.createForClass(Bulletin);

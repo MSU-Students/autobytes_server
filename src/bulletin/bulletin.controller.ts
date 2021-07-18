@@ -32,9 +32,9 @@ export class BulletinController {
     @ApiResponse({ status: 200, type: Bulletin })
     @Put('/update')
     async update(@Query('id') id: string, @Body() Bulletin: Bulletin) {
-        return await this.bulletinService.update(id, Bulletin);
+        return await this.bulletinService.update(id,Bulletin);
     }
-
+    
     @ApiOperation({ summary: 'Delete Bulletin by id', operationId: 'DeleteBulletin' })
     @ApiResponse({ status: 200, type: Bulletin })
     @Delete('/delete')

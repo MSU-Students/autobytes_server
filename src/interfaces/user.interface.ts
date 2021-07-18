@@ -1,9 +1,8 @@
 export interface IUser {
-    studentName: string;
-    id: string;
-    gender: string;
-    address: string;
-    level: string;
-    acadAdviser: string;
-    course: string;
+    id?: string
+    userName: string;
+    password?: string;
+    firstName: string;
+    lastName: string;
+    idNumber: string;
 }

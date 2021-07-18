@@ -8,16 +8,16 @@ import { UserService } from './user.service';
 export class UserController {
   constructor(private userService: UserService) { }
 
-  @ApiBody({ type: [User] })
-  @ApiOperation({ summary: 'Add new users', operationId: 'AddUsers' })
-  @ApiResponse({ status: 200, type: [User] })
+  @ApiBody({ type: User })
+  @ApiOperation({ summary: 'Add new user', operationId: 'AddUser' })
+  @ApiResponse({ status: 200, type: User })
   @Post('/create')
-  create(@Body() user: User[]) {
+  create(@Body() user: User) {
     return this.userService.create(user);
   }
 
   @ApiOperation({ summary: 'Get all users', operationId: 'GetUsers' })
-  @ApiResponse({ status: 200, type: [User] })
+  @ApiResponse({ status: 200, type: User })
   @Get('/all')
   async findAll() {
     return this.userService.findAll();
@@ -35,12 +35,5 @@ export class UserController {
   @Put('/update')
   async update(@Query('id') id: string, @Body() User: User) {
     return await this.userService.update(id, User);
-  }
-
-  @ApiOperation({ summary: 'Delete user by id', operationId: 'DeleteUser' })
-  @ApiResponse({ status: 200, type: User })
-  @Delete('/delete')
-  async delete(@Query('id') id: string) {
-    return await this.userService.delete(id);
   }
 }

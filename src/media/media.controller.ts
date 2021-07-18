@@ -1,10 +1,13 @@
-import { Controller, Get, Post, Query, Res, UploadedFile, UseInterceptors } from '@nestjs/common';
+import { Controller, Get, Post, Query, Res, UploadedFile, UseGuards, UseInterceptors } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { ApiBody, ApiConsumes, ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiBody, ApiConsumes, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { Response } from 'express';
 import { Media } from 'src/schemas/Media.schema';
+import { JwtAuthGuard } from 'src/user/jwt-auth.guard';
 import { MediaService } from './media.service';
 
+@ApiBearerAuth()
+@UseGuards(JwtAuthGuard)
 @Controller('media')
 export class MediaController {
     constructor(private mediaService: MediaService) { }

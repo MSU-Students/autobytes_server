@@ -5,4 +5,6 @@ export interface IUser {
     firstName: string;
     lastName: string;
     idNumber: string;
+    disabled?: boolean;
+    refreshToken?: string;
 }

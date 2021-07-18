@@ -19,5 +19,13 @@ export class Attendance implements IAttendance{
     @ApiProperty()
     @Prop({required:true})
     date: string;
+    
+    @ApiProperty()
+    @Prop({required:true})
+    eventName: string;
+
+    @ApiProperty()
+    @Prop({required:true})
+    amount: string;
 }
 export const AttendanceSchema = SchemaFactory.createForClass(Attendance);

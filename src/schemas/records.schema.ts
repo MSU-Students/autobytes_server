@@ -25,5 +25,9 @@ export class Records {
     @ApiProperty()
     @Prop({required:true})
     recordsType: string;
+
+    @ApiProperty()
+    @Prop({required:true})
+    url: string;
 }
 export const RecordsSchema = SchemaFactory.createForClass(Records);

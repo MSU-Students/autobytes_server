@@ -10,30 +10,18 @@ export class User implements IUser {
 
     @ApiProperty()
     @Prop({ required: true })
-    studentName: string;
+    userName: string;
 
     @ApiProperty()
     @Prop({ required: true })
-    id: string;
+    idNumber: string;
 
     @ApiProperty()
     @Prop({ required: true })
-    gender: string;
+    firstName: string;
 
     @ApiProperty()
     @Prop({ required: true })
-    address: string;
-
-    @ApiProperty()
-    @Prop({ required: true })
-    level: string;
-
-    @ApiProperty()
-    @Prop({ required: true })
-    acadAdviser: string;
-
-    @ApiProperty()
-    @Prop({ required: true })
-    course: string;
+    lastName: string;
 }
 export const UserSchema = SchemaFactory.createForClass(User);

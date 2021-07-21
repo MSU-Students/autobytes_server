@@ -9,6 +9,7 @@ async function bootstrap() {
     .setDescription('The Autobytes API description')
     .setVersion('1.0')
     .addTag('Autobytes')
+    .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('Autobytes', app, document);

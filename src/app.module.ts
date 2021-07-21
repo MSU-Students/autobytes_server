@@ -26,14 +26,19 @@ import { MediaService } from './media/media.service';
 import { Students, StudentsSchema } from './schemas/students.schema';
 import { StudentsController } from './students/students.controller';
 import { StudentsService } from './students/students.service';
+import { AuthModule } from './user/auth.module';
+import { ConfigModule } from '@nestjs/config';
+import configuration from './config/configuration';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      load: [configuration],
+      envFilePath: ['.env.dev.local', '.env.dev', '.env.prod']
+    }),
     MongooseModule.forFeature([{
       name: Attendance.name, schema: AttendanceSchema
-    },
-    {
-      name: User.name, schema: UserSchema
     },
     {
       name: Bulletin.name, schema: BulletinSchema
@@ -56,8 +61,9 @@ import { StudentsService } from './students/students.service';
     MongooseModule.forRoot('mongodb://localhost/autobytes', {
       useFindAndModify: false
     }),
+    AuthModule
   ],
-  controllers: [AppController, UserController, AttendanceController, BulletinController, ClearanceController, RecordsController, ArchivedController, MediaController, StudentsController],
-  providers: [AppService, UserService, AttendanceService, BulletinService, ClearanceService, RecordsService, ArchivedService, MediaService, StudentsService]
+  controllers: [AppController, AttendanceController, BulletinController, ClearanceController, RecordsController, ArchivedController, MediaController, StudentsController],
+  providers: [AppService, AttendanceService, BulletinService, ClearanceService, RecordsService, ArchivedService, MediaService, StudentsService]
 })
 export class AppModule { }

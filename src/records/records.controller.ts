@@ -1,8 +1,11 @@
-import { Body, Controller, Get, Post, Put, Delete, Query } from '@nestjs/common';
-import { ApiBody, ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { Body, Controller, Get, Post, Put, Delete, Query, UseGuards } from '@nestjs/common';
+import { ApiBearerAuth, ApiBody, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { Records } from 'src/schemas/records.schema';
+import { JwtAuthGuard } from 'src/user/jwt-auth.guard';
 import { RecordsService } from './records.service';
 
+@ApiBearerAuth()
+@UseGuards(JwtAuthGuard)
 @Controller('records')
 export class RecordsController {
     constructor(private recordsService: RecordsService) { }

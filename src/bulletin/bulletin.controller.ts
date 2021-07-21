@@ -1,8 +1,11 @@
-import { Body, Controller, Get, Post, Put, Delete, Query } from '@nestjs/common';
-import { ApiBody, ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { Body, Controller, Get, Post, Put, Delete, Query, UseGuards } from '@nestjs/common';
+import { ApiBearerAuth, ApiBody, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { Bulletin } from 'src/schemas/bulletin.schema';
+import { JwtAuthGuard } from 'src/user/jwt-auth.guard';
 import { BulletinService } from './bulletin.service';
 
+@ApiBearerAuth()
+@UseGuards(JwtAuthGuard)
 @Controller('bulletin')
 export class BulletinController {
     constructor(private bulletinService: BulletinService) { }

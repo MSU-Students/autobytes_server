@@ -1,8 +1,11 @@
-import { Body, Controller, Get, Post, Put, Delete, Query } from '@nestjs/common';
-import { ApiBody, ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { Body, Controller, Get, Post, Put, Delete, Query, UseGuards } from '@nestjs/common';
+import { ApiBearerAuth, ApiBody, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { Clearance } from 'src/schemas/clearance.schema';
+import { JwtAuthGuard } from 'src/user/jwt-auth.guard';
 import { ClearanceService } from './clearance.service';
 
+@ApiBearerAuth()
+@UseGuards(JwtAuthGuard)
 @Controller('clearance')
 export class ClearanceController {
     constructor(private clearanceService:ClearanceService) {}

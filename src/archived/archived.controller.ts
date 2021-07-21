@@ -1,8 +1,11 @@
-import { Body, Controller, Get, Post, Put, Delete, Query } from '@nestjs/common';
-import { ApiBody, ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { Body, Controller, Get, Post, Put, Delete, Query, UseGuards } from '@nestjs/common';
+import { ApiBearerAuth, ApiBody, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { Archived } from 'src/schemas/archived.schema';
+import { JwtAuthGuard } from 'src/user/jwt-auth.guard';
 import { ArchivedService } from './archived.service';
 
+@ApiBearerAuth()
+@UseGuards(JwtAuthGuard)
 @Controller('archived')
 export class ArchivedController {
     constructor(private archivedService: ArchivedService) { }

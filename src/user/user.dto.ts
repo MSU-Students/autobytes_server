@@ -6,23 +6,25 @@ export interface User {
     middleName?: string;
     lastName: string;
     birthDate?: Date;
+    userType: string;
     username?: string;
     password?: string;
     active?: boolean;
 }
 export class RegisterUserDto implements User {
     id?: number;
-    @ApiProperty({default: 'Ibrahim'})
+    @ApiProperty({ default: 'Ibrahim' })
     firstName: string;
-    @ApiProperty({default: 'S'})
+    @ApiProperty({ default: 'S' })
     middleName?: string;
-    @ApiProperty({default: 'Lucman'})
+    @ApiProperty({ default: 'Lucman' })
     lastName: string;
     @ApiProperty({ type: 'string', format: 'date-time', example: '2000-06-30' })
     birthDate?: Date;
-    @ApiProperty({default: 'user'})
+    @ApiProperty({ default: 'user' })
     username?: string;
-    @ApiProperty({default: 'yousir'})
+    @ApiProperty({ type: 'string' })
+    userType: string;
     password?: string;
     active?: boolean;
 }
@@ -32,15 +34,17 @@ export class LoginUserDto implements User {
     firstName: string;
     middleName?: string;
     lastName: string;
+    userType: string;
     birthDate?: Date;
     @ApiProperty()
     username?: string;
     @ApiProperty()
     password?: string;
     active?: boolean;
+
 }
 
-export class RefreshDto  {
+export class RefreshDto {
     @ApiProperty({
         required: true,
         minLength: 5
@@ -48,7 +52,7 @@ export class RefreshDto  {
     refresh_token: string;
 }
 
-export class AccessTokenDto  {
+export class AccessTokenDto {
     @ApiProperty({
         required: false,
         minLength: 5

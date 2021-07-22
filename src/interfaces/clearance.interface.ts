@@ -1,8 +1,9 @@
 export interface IClearance {
-    id?: string
+    id?: string;
     name: string;
     date: string;
-    amount: string
+    amount: string;
     eventName: string;
+    semester: string;
 
 }

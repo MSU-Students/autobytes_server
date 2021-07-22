@@ -4,6 +4,7 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 import { IUser } from '../interfaces/user.interface';
+import { User } from 'src/schemas/user.schema';
 
 @Injectable()
 export class AuthService {
@@ -21,7 +22,7 @@ export class AuthService {
         return null;
     }
 
-    async login(user: any) {
+    async login(user: IUser) {
         // use sub for userId to be consistent with JWT Standards
         const accessToken = this.getAccessToken(user);
         const refreshToken = this.jwtService.sign({ userId: user.id });
@@ -36,8 +37,8 @@ export class AuthService {
         };
     }
 
-    getAccessToken(user: any) {
-        const payload = { username: user.email, sub: user.id, role: user.userType || 'user' };
+    getAccessToken(user: IUser) {
+        const payload = { username: user.userName, sub: user.id, role: user.userType };
         return this.jwtService.sign(payload, {
             secret: this.configService.get('jwt').secret,
             expiresIn: this.configService.get('jwt').expiresIn

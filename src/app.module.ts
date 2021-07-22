@@ -57,13 +57,16 @@ import configuration from './config/configuration';
     },
     {
       name: Students.name, schema: StudentsSchema
-    }]),
+    },{
+      name: User.name, schema: UserSchema
+    }
+  ]),
     MongooseModule.forRoot('mongodb://localhost/autobytes', {
       useFindAndModify: false
     }),
     AuthModule
   ],
-  controllers: [AppController, AttendanceController, BulletinController, ClearanceController, RecordsController, ArchivedController, MediaController, StudentsController],
-  providers: [AppService, AttendanceService, BulletinService, ClearanceService, RecordsService, ArchivedService, MediaService, StudentsService]
+  controllers: [AppController, AttendanceController, BulletinController, ClearanceController, RecordsController, ArchivedController, MediaController, StudentsController, UserController],
+  providers: [AppService, AttendanceService, BulletinService, ClearanceService, RecordsService, ArchivedService, MediaService, StudentsService, UserService]
 })
 export class AppModule { }

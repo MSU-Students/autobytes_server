@@ -21,5 +21,9 @@ export class Clearance {
     @ApiProperty()
     @Prop({required:true})
     amount: string;
+
+    @ApiProperty()
+    @Prop({required:false})
+    semester: string;
 }
 export const ClearanceSchema = SchemaFactory.createForClass(Clearance);

@@ -9,6 +9,7 @@ import {
   UseGuards,
   Request,
   Body,
+  Get,
 } from '@nestjs/common';
 import {
   ApiBearerAuth,
@@ -29,8 +30,8 @@ export class AuthController {
   constructor(
     private readonly authService: AuthService,
     private readonly userService: UserService,
-  ) {}
-  
+  ) { }
+
   @ApiBody({ type: User })
   @ApiOperation({ summary: 'Register User', operationId: 'register' })
   @ApiResponse({ status: 200, type: User })
@@ -77,7 +78,6 @@ export class AuthController {
     type: AccessTokenDto,
   })
   @ApiBearerAuth()
-  @UseGuards(JwtAuthGuard)
   @Post('refresh_token')
   async refreshToken(@Request() req) {
     const accessToken = this.authService.getAccessToken(req.user);
@@ -93,5 +93,16 @@ export class AuthController {
   @Post('logout')
   async logOut(@Request() req) {
     await this.authService.removeRefreshToken(req.user.userId);
+  }
+
+  @ApiOperation({
+    summary: 'get profile info',
+    operationId: 'getProfile',
+  })
+  @ApiBearerAuth()
+  @UseGuards(JwtAuthGuard)
+  @Get('profile')
+  async getProfile(@Request() req) {
+    return req.user;
   }
 }

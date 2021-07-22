@@ -8,31 +8,35 @@ export type UserDocument = User & Document;
 @Schema()
 export class User implements IUser {
 
-    @ApiProperty({example: "admin"})
+    @ApiProperty({ example: "admin" })
     @Prop({ required: true })
     userName: string;
 
-    @ApiProperty({example: "20219991"})
+    @ApiProperty({ example: "20219991" })
     @Prop({ required: true })
     idNumber: string;
 
-    @ApiProperty({example: "Joe"})
+    @ApiProperty({ example: "Joe" })
     @Prop({ required: true })
     firstName: string;
 
-    @ApiProperty({example: "Kuala"})
+    @ApiProperty({ example: "Kuala" })
     @Prop({ required: true })
     lastName: string;
-    
-    @ApiProperty({required: false})
+
+    @ApiProperty({ required: false })
     @Prop({ required: false })
     refreshToken?: string;
 
-    @ApiProperty({required: false, example: "oddmin"})
+    @ApiProperty({ required: false, example: "oddmin" })
     @Prop({ required: false })
     password?: string;
 
-    @ApiProperty({default: false, required: false})
+    @ApiProperty({ example: "admin" })
+    @Prop({ required: true })
+    userType: string;
+
+    @ApiProperty({ default: false, required: false })
     @Prop({ required: true, default: false })
     disabled?: boolean;
 }

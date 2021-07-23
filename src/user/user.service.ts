@@ -22,7 +22,8 @@ export class UserService {
     })
   }
   async findById(id: string): Promise<User> {
-    return this.userModel.findById(id).exec();
+    const result = await this.userModel.findById(id);
+    return result.toJSON();
   }
 
   async findByUsername(username: string): Promise<User> {

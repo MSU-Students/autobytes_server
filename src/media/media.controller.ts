@@ -6,11 +6,12 @@ import { Media } from 'src/schemas/Media.schema';
 import { JwtAuthGuard } from 'src/user/jwt-auth.guard';
 import { MediaService } from './media.service';
 
-@ApiBearerAuth()
-@UseGuards(JwtAuthGuard)
+
 @Controller('media')
 export class MediaController {
     constructor(private mediaService: MediaService) { }
+    @ApiBearerAuth()
+    @UseGuards(JwtAuthGuard)
     @ApiConsumes('multipart/form-data')
     @ApiBody({
         schema: {

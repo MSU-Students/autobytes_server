@@ -5,4 +5,5 @@ export interface IAttendance {
     date: string
     eventName: string
     amount: string
+    semester: string
 }

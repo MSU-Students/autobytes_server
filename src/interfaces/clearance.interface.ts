@@ -5,5 +5,6 @@ export interface IClearance {
     amount: string;
     eventName: string;
     semester: string;
+    idNumber?: string
 
 }

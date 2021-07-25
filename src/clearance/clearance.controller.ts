@@ -8,7 +8,7 @@ import { ClearanceService } from './clearance.service';
 @UseGuards(JwtAuthGuard)
 @Controller('clearance')
 export class ClearanceController {
-    constructor(private clearanceService:ClearanceService) {}
+    constructor(private clearanceService: ClearanceService) { }
 
     @ApiBody({ type: Clearance })
     @ApiOperation({ summary: 'Add new clearance', operationId: 'AddClearance' })
@@ -29,7 +29,14 @@ export class ClearanceController {
     @ApiResponse({ status: 200, type: Clearance })
     @Get('id')
     async findById(@Query('id') id: string) {
-        return await this.clearanceService.findById(id);
+       return this.clearanceService.findById(id);
+    }
+
+    @ApiOperation({ summary: 'Get clearance by ID Number', operationId: 'GetLiability' })
+    @ApiResponse({ status: 200, type: Clearance })
+    @Get('idNumber')
+    async findOne(@Query('idNumber') idNumber: string) {
+       return this.clearanceService.findOne(idNumber);
     }
 
     @ApiOperation({ summary: 'Update clearance by id', operationId: 'UpdateClearance' })

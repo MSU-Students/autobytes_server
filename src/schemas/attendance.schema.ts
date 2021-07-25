@@ -27,5 +27,9 @@ export class Attendance implements IAttendance{
     @ApiProperty()
     @Prop({required:true})
     amount: string;
+
+    @ApiProperty()
+    @Prop({required:true})
+    semester: string;
 }
 export const AttendanceSchema = SchemaFactory.createForClass(Attendance);

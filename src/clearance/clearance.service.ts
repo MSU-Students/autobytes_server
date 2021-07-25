@@ -5,7 +5,7 @@ import { Clearance, ClearanceDocument } from 'src/schemas/clearance.schema';
 
 @Injectable()
 export class ClearanceService {
-    constructor(@InjectModel(Clearance.name) private clearanceModel: Model<ClearanceDocument>){}
+    constructor(@InjectModel(Clearance.name) private clearanceModel: Model<ClearanceDocument>) { }
     create(clearance: Clearance) {
         const createdClearance = new this.clearanceModel(clearance);
         return createdClearance.save();
@@ -14,7 +14,12 @@ export class ClearanceService {
         return this.clearanceModel.find().exec();
     }
     async findById(id: string): Promise<Clearance> {
-        return this.clearanceModel.findById(id).exec();
+        const result = await this.clearanceModel.findById(id);
+        return result.toJSON();
+    }
+    async findOne(id: string): Promise<Clearance> {
+        const result = await this.clearanceModel.findOne({ idNumber: id });
+        return result.toJSON();
     }
 
     async update(id: string, Clearance: Clearance): Promise<any> {

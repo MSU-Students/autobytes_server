@@ -44,4 +44,11 @@ export class AttendanceController {
   async delete(@Query('id') id: string) {
     return await this.attendanceService.delete(id);
   }
+
+  @ApiOperation({ summary: 'Delete All Attendance', operationId: 'DeleteAllAttendances' })
+  @ApiResponse({ status: 200, type: Attendance })
+  @Delete('/deleteAll')
+  async deleteAll() {
+    return await this.attendanceService.deleteAll();
+  }
 }

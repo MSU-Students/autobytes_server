@@ -25,4 +25,8 @@ export class BulletinService {
     async delete(id: string): Promise<any> {
         return await this.bulletinModel.findByIdAndRemove(id);
     }
+
+    async deleteAll(): Promise<any> {
+        return await this.bulletinModel.deleteMany()
+    }
 }

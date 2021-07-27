@@ -44,4 +44,11 @@ export class BulletinController {
     async delete(@Query('id') id: string) {
         return await this.bulletinService.delete(id);
     }
+
+    @ApiOperation({ summary: 'Delete All Bulletin', operationId: 'DeleteAllBulletins' })
+    @ApiResponse({ status: 200, type: Bulletin })
+    @Delete('/deleteAll')
+    async deleteAll() {
+        return await this.bulletinService.deleteAll();
+    }
 }

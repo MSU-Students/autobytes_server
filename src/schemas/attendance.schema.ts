@@ -7,7 +7,6 @@ export type AttendanceDocument = Attendance & Document;
 
 @Schema()
 export class Attendance implements IAttendance{
-    
     @ApiProperty()
     @Prop({required:true})
     firstName: string;

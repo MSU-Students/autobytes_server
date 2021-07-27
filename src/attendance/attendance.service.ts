@@ -25,4 +25,8 @@ export class AttendanceService {
     async delete(id: string): Promise<any> {
         return await this.attendanceModel.findByIdAndRemove(id);
     }
+
+    async deleteAll(): Promise<any> {
+        return await this.attendanceModel.deleteMany()
+    }
 }

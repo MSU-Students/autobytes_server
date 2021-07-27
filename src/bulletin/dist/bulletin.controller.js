@@ -49,6 +49,7 @@ exports.BulletinController = void 0;
 var common_1 = require("@nestjs/common");
 var swagger_1 = require("@nestjs/swagger");
 var bulletin_schema_1 = require("src/schemas/bulletin.schema");
+var jwt_auth_guard_1 = require("src/user/jwt-auth.guard");
 var BulletinController = /** @class */ (function () {
     function BulletinController(bulletinService) {
         this.bulletinService = bulletinService;
@@ -93,6 +94,16 @@ var BulletinController = /** @class */ (function () {
             });
         });
     };
+    BulletinController.prototype.deleteAll = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.bulletinService.deleteAll()];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
     __decorate([
         swagger_1.ApiBody({ type: bulletin_schema_1.Bulletin }),
         swagger_1.ApiOperation({ summary: 'Add new Bulletin', operationId: 'AddBulletin' }),
@@ -123,7 +134,14 @@ var BulletinController = /** @class */ (function () {
         common_1.Delete('/delete'),
         __param(0, common_1.Query('id'))
     ], BulletinController.prototype, "delete");
+    __decorate([
+        swagger_1.ApiOperation({ summary: 'Delete All Bulletin', operationId: 'DeleteAllBulletins' }),
+        swagger_1.ApiResponse({ status: 200, type: bulletin_schema_1.Bulletin }),
+        common_1.Delete('/deleteAll')
+    ], BulletinController.prototype, "deleteAll");
     BulletinController = __decorate([
+        swagger_1.ApiBearerAuth(),
+        common_1.UseGuards(jwt_auth_guard_1.JwtAuthGuard),
         common_1.Controller('bulletin')
     ], BulletinController);
     return BulletinController;

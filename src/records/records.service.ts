@@ -25,4 +25,7 @@ export class RecordsService {
     async delete(id: string): Promise<any> {
         return await this.recordsModel.findByIdAndRemove(id);
     }
+    async deleteAll(): Promise<any> {
+        return await this.recordsModel.deleteMany()
+    }
 }

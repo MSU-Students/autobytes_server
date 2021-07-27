@@ -52,4 +52,11 @@ export class ClearanceController {
     async delete(@Query('id') id: string) {
         return await this.clearanceService.delete(id);
     }
+
+    @ApiOperation({ summary: 'Delete All clearance by id', operationId: 'DeleteAllClearances' })
+    @ApiResponse({ status: 200, type: Clearance })
+    @Delete('/deleteAll')
+    async deleteAll() {
+        return await this.clearanceService.deleteAll();
+    }
 }

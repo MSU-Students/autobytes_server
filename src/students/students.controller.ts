@@ -45,4 +45,11 @@ export class StudentsController {
   async delete(@Query('id') id: string) {
     return await this.studentsService.delete(id);
   }
+
+  @ApiOperation({ summary: 'Delete All Student', operationId: 'deleteAllStudents' })
+  @ApiResponse({ status: 200, type: Students })
+  @Delete('/deleteAll')
+  async deleteAll() {
+    return await this.studentsService.deleteAll();
+  }
 }

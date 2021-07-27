@@ -30,4 +30,8 @@ export class ClearanceService {
     async delete(id: string): Promise<any> {
         return await this.clearanceModel.findByIdAndRemove(id);
     }
+
+    async deleteAll(): Promise<any> {
+        return await this.clearanceModel.deleteMany();
+    }
 }

@@ -42,4 +42,11 @@ export class UserController {
   async update(@Query('id') id: string, @Body() User: User) {
     return await this.userService.update(id, User);
   }
+
+  @ApiOperation({ summary: 'Delete user by id', operationId: 'DeleteUserById' })
+  @ApiResponse({ status: 200, type: User })
+  @Delete('/deleteByID')
+  async deleteById(@Query('id') id: string) {
+    return await this.userService.deleteById(id);
+  }
 }

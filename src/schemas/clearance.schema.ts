@@ -1,15 +1,12 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { ApiProperty } from '@nestjs/swagger';
 import { Document } from 'mongoose';
+import { IClearance } from 'src/interfaces/clearance.interface';
 
 export type ClearanceDocument = Clearance & Document;
 
 @Schema()
-export class Clearance {
-    @ApiProperty()
-    @Prop({required:false})
-    id?: string;
-
+export class Clearance implements IClearance{
     @ApiProperty()
     @Prop({required:true})
     name: string;
@@ -33,5 +30,9 @@ export class Clearance {
     @ApiProperty()
     @Prop({required:false})
     idNumber?: string;
+
+    @ApiProperty()
+    @Prop({required:false})
+    clear?: string;
 }
 export const ClearanceSchema = SchemaFactory.createForClass(Clearance);
